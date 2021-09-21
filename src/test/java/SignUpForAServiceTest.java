@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -32,50 +33,52 @@ public class SignUpForAServiceTest extends Methods {
         CarManagementPage carManagementPage = new CarManagementPage(driver);
         ServicePage servicePage = new ServicePage(driver);
         PhoneNumberPage3 phoneNumberPage = new PhoneNumberPage3(driver);
+        SoftAssert softAssert = new SoftAssert();
+
         // "+" button
         tapElementAt(carManagementPage.functionalityScreen, 0.5, 0.59);
         // Sign up for a service button
         tapElementAt(carManagementPage.functionalityScreen, 0.5, 0.8);
 
-        Assert.assertTrue(servicePage.serviceHeader.isDisplayed(), "Service page is not present");
-        Assert.assertTrue(servicePage.carImg.isDisplayed(), "carImg is not present");
-        Assert.assertTrue(servicePage.carModel.isDisplayed(), "carModel is not present");
-        Assert.assertTrue(servicePage.carGrz.isDisplayed(), "carGrz is not present");
-        Assert.assertTrue(servicePage.chooseCarButton.isDisplayed(), "chooseCarButton is not present");
+        softAssert.assertTrue(servicePage.serviceHeader.isDisplayed(), "Service page is not present");
+        softAssert.assertTrue(servicePage.carImg.isDisplayed(), "carImg is not present");
+        softAssert.assertTrue(servicePage.carModel.isDisplayed(), "carModel is not present");
+        softAssert.assertTrue(servicePage.carGrz.isDisplayed(), "carGrz is not present");
+        softAssert.assertTrue(servicePage.chooseCarButton.isDisplayed(), "chooseCarButton is not present");
         servicePage.chooseCarButton.click();
-        Assert.assertTrue(servicePage.chooseModel.isDisplayed(), "Choose car page or chooseModel is not present");
-        Assert.assertTrue(servicePage.chooseImg.isDisplayed(), "chooseImg is not present");
-        Assert.assertTrue(servicePage.chooseGrz.isDisplayed(), "chooseGrz is not present");
-        Assert.assertTrue(servicePage.chooseVin.isDisplayed(), "chooseVin is not present");
+        softAssert.assertTrue(servicePage.chooseModel.isDisplayed(), "Choose car page or chooseModel is not present");
+        softAssert.assertTrue(servicePage.chooseImg.isDisplayed(), "chooseImg is not present");
+        softAssert.assertTrue(servicePage.chooseGrz.isDisplayed(), "chooseGrz is not present");
+        softAssert.assertTrue(servicePage.chooseVin.isDisplayed(), "chooseVin is not present");
         servicePage.chooseImg.click();
-        Assert.assertTrue(servicePage.vin.isDisplayed(), "vin is not present");
-        Assert.assertTrue(servicePage.year.isDisplayed(), "year is not present");
-        Assert.assertTrue(servicePage.guarantee.isDisplayed(), "guarantee is not present");
-        Assert.assertTrue(servicePage.TOWork.isDisplayed(), "TOWork is not present");
-        Assert.assertTrue(servicePage.tiresWork.isDisplayed(), "tiresWork is not present");
-        Assert.assertTrue(servicePage.repairWork.isDisplayed(), "repairWork is not present");
-        Assert.assertTrue(servicePage.comment.isDisplayed(), "comment is not present");
-        Assert.assertTrue(servicePage.selectButton.isDisplayed(), "selectButton is not present");
+        softAssert.assertTrue(servicePage.vin.isDisplayed(), "vin is not present");
+        softAssert.assertTrue(servicePage.year.isDisplayed(), "year is not present");
+        softAssert.assertTrue(servicePage.guarantee.isDisplayed(), "guarantee is not present");
+        softAssert.assertTrue(servicePage.TOWork.isDisplayed(), "TOWork is not present");
+        softAssert.assertTrue(servicePage.tiresWork.isDisplayed(), "tiresWork is not present");
+        softAssert.assertTrue(servicePage.repairWork.isDisplayed(), "repairWork is not present");
+        softAssert.assertTrue(servicePage.comment.isDisplayed(), "comment is not present");
+        softAssert.assertTrue(servicePage.selectButton.isDisplayed(), "selectButton is not present");
 
         servicePage.TOWork.click();
         servicePage.selectButton.click();
-        Assert.assertTrue(servicePage.servicesHeader.isDisplayed(), "servicesHeader is not present");
-        Assert.assertTrue(servicePage.servicesDescription.isDisplayed(), "servicesHeader is not present");
+        softAssert.assertTrue(servicePage.servicesHeader.isDisplayed(), "servicesHeader is not present");
+        softAssert.assertTrue(servicePage.servicesDescription.isDisplayed(), "servicesHeader is not present");
         servicePage.backArrowServices.click();
         servicePage.TOWork.click();
 
         servicePage.tiresWork.click();
         servicePage.selectButton.click();
-        Assert.assertTrue(servicePage.servicesHeader.isDisplayed(), "servicesHeader is not present");
-        Assert.assertTrue(servicePage.servicesDescription.isDisplayed(), "servicesHeader is not present");
+        softAssert.assertTrue(servicePage.servicesHeader.isDisplayed(), "servicesHeader is not present");
+        softAssert.assertTrue(servicePage.servicesDescription.isDisplayed(), "servicesHeader is not present");
         servicePage.backArrowServices.click();
         servicePage.tiresWork.click();
 
         String repair = servicePage.repairWork.getText();
         servicePage.repairWork.click();
         servicePage.selectButton.click();
-        Assert.assertTrue(servicePage.servicesHeader.isDisplayed(), "servicesHeader is not present");
-        Assert.assertTrue(servicePage.servicesDescription.isDisplayed(), "servicesHeader is not present");
+        softAssert.assertTrue(servicePage.servicesHeader.isDisplayed(), "servicesHeader is not present");
+        softAssert.assertTrue(servicePage.servicesDescription.isDisplayed(), "servicesHeader is not present");
 
         // search Автоцентр АНТ in services by scroll
         wait.until(ExpectedConditions.elementToBeClickable(servicePage.firstService));
@@ -104,19 +107,21 @@ public class SignUpForAServiceTest extends Methods {
         wait.until(ExpectedConditions.elementToBeClickable(servicePage.acceptServiceButton));
         servicePage.acceptServiceButton.click();
 
-        Assert.assertTrue(servicePage.carImgAcceptPage.isDisplayed(), "carImgAcceptPage is not present");
-        Assert.assertTrue(servicePage.carAcceptPage.isDisplayed(), "carAcceptPage is not present");
-        Assert.assertTrue(servicePage.grzAcceptPage.isDisplayed(), "grzAcceptPage is not present");
-        Assert.assertTrue(servicePage.vinAcceptPage.isDisplayed(), "vinAcceptPage is not present");
-        Assert.assertTrue(servicePage.serviceAddressAcceptPage.isDisplayed(), "serviceAddressAcceptPage is not present");
-        Assert.assertTrue(servicePage.dateAcceptPage.isDisplayed(), "dateAcceptPage is not present");
-        Assert.assertTrue(servicePage.acceptButtonAcceptPage.isDisplayed(), "acceptButtonAcceptPage is not present");
-        Assert.assertEquals(servicePage.phoneAcceptPage.getText(), phoneNumberPage.decoratePhoneNumber, "Phone numbers do not match");
-        Assert.assertEquals(repair, servicePage.repairAcceptPage.getText(), "Repairs do not match");
+        softAssert.assertTrue(servicePage.carImgAcceptPage.isDisplayed(), "carImgAcceptPage is not present");
+        softAssert.assertTrue(servicePage.carAcceptPage.isDisplayed(), "carAcceptPage is not present");
+        softAssert.assertTrue(servicePage.grzAcceptPage.isDisplayed(), "grzAcceptPage is not present");
+        softAssert.assertTrue(servicePage.vinAcceptPage.isDisplayed(), "vinAcceptPage is not present");
+        softAssert.assertTrue(servicePage.serviceAddressAcceptPage.isDisplayed(), "serviceAddressAcceptPage is not present");
+        softAssert.assertTrue(servicePage.dateAcceptPage.isDisplayed(), "dateAcceptPage is not present");
+        softAssert.assertTrue(servicePage.acceptButtonAcceptPage.isDisplayed(), "acceptButtonAcceptPage is not present");
+        softAssert.assertEquals(servicePage.phoneAcceptPage.getText(), phoneNumberPage.decoratePhoneNumber, "Phone numbers do not match");
+        softAssert.assertEquals(repair, servicePage.repairAcceptPage.getText(), "Repairs do not match");
 
         servicePage.pencilImgAcceptPage.click();
         servicePage.nameInputAcceptPage.sendKeys(generateRandomHexString(6));
         servicePage.acceptButtonAcceptPage.click();
+
+        softAssert.assertAll();
 
     }
 

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,19 +22,20 @@ public class OpenAndUseGarageTest extends Methods {
 
         CarManagementPage carManagementPage = new CarManagementPage(driver);
         GaragePage garagePage = new GaragePage(driver);
+        SoftAssert softAssert = new SoftAssert();
 
         loginToDev();
 
         // check garage page
         tapElementAt(carManagementPage.functionalityScreen, 0.76,0.96);
-        Assert.assertTrue(garagePage.garageHeader.isDisplayed(), "Garage is not open");
-        Assert.assertTrue(garagePage.carImg.isDisplayed(), "Garage is not open");
-        Assert.assertTrue(garagePage.markaImg.isDisplayed(), "Garage is not open");
-        Assert.assertTrue(garagePage.modelText.isDisplayed(), "Garage is not open");
-        Assert.assertTrue(garagePage.grzText.isDisplayed(), "Garage is not open");
+        softAssert.assertTrue(garagePage.garageHeader.isDisplayed(), "Garage is not open");
+        softAssert.assertTrue(garagePage.carImg.isDisplayed(), "Garage is not open");
+        softAssert.assertTrue(garagePage.markaImg.isDisplayed(), "Garage is not open");
+        softAssert.assertTrue(garagePage.modelText.isDisplayed(), "Garage is not open");
+        softAssert.assertTrue(garagePage.grzText.isDisplayed(), "Garage is not open");
         // check back arrow
         garagePage.backArrow.click();
-        Assert.assertTrue(carManagementPage.functionalityScreen.isDisplayed(), "Back arrow in garage is not work");
+        softAssert.assertTrue(carManagementPage.functionalityScreen.isDisplayed(), "Back arrow in garage is not work");
         // check select car
         tapElementAt(carManagementPage.functionalityScreen, 0.76,0.96);
         garagePage.garageLogger.click();
@@ -41,9 +43,11 @@ public class OpenAndUseGarageTest extends Methods {
         driver.navigate().back();
         garagePage.selectButton.isEnabled();
         garagePage.selectButton.click();
-        Assert.assertTrue(carManagementPage.functionalityScreen.isDisplayed(), "Select car in garage is not work");
+        softAssert.assertTrue(carManagementPage.functionalityScreen.isDisplayed(), "Select car in garage is not work");
         carManagementPage.loggerCarManagement.click();
-        Assert.assertTrue(carManagementPage.subscribeCar.isDisplayed());
+        softAssert.assertTrue(carManagementPage.subscribeCar.isDisplayed());
+
+        softAssert.assertAll();
     }
 
 }

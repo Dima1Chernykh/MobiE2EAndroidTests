@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 public class VINCheckIsWorkCorrectlyTest extends BaseMethods {
 
     @Test
-    public void testLoginToDEVTest() throws InterruptedException {
+    public void testVINCheckIsWorkCorrectly() throws InterruptedException {
         System.out.println(this.getClass().getName() + " " + "started!");
         CarManagementPage carManagementPage = new CarManagementPage(driver);
         SideMenuPage sideMenuPage = new SideMenuPage(driver);

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,6 +21,7 @@ public class OpenStatisticTest extends Methods {
         System.out.println(this.getClass().getName() + " " + "started!");
         CarManagementPage carManagementPage = new CarManagementPage(driver);
         StatisticPage statisticPage = new StatisticPage(driver);
+        SoftAssert softAssert = new SoftAssert();
 
         loginToDev();
 
@@ -28,20 +30,22 @@ public class OpenStatisticTest extends Methods {
         // statistic button
         tapElementAt(carManagementPage.functionalityScreen, 0.5, 0.72);
 
-        Assert.assertTrue(statisticPage.statisticHeader.isDisplayed(), "Statistic page is not present");
-        Assert.assertTrue(statisticPage.backArrowButton.isDisplayed(), "backArrowButton is not present");
-        Assert.assertTrue(statisticPage.days.isDisplayed(), "days is not present");
-        Assert.assertTrue(statisticPage.monday.isDisplayed(), "days in days is not present");
-        Assert.assertTrue(statisticPage.months.isDisplayed(), "months is not present");
+        softAssert.assertTrue(statisticPage.statisticHeader.isDisplayed(), "Statistic page is not present");
+        softAssert.assertTrue(statisticPage.backArrowButton.isDisplayed(), "backArrowButton is not present");
+        softAssert.assertTrue(statisticPage.days.isDisplayed(), "days is not present");
+        softAssert.assertTrue(statisticPage.monday.isDisplayed(), "days in days is not present");
+        softAssert.assertTrue(statisticPage.months.isDisplayed(), "months is not present");
         statisticPage.months.click();
-        Assert.assertTrue(statisticPage.jan.isDisplayed(), "months in months is not present");
-        Assert.assertEquals(statisticPage.avgInDays.getText(), "Ср. загрузка в будни" , "avgInDays in months is not present");
-        Assert.assertEquals(statisticPage.avgInHolidays.getText(), "Ср. загрузка в выходные", "avgInHolidays in months is not present");
-        Assert.assertEquals(statisticPage.trips.getText(), "Количество поездок", "trips in months is not present");
-        Assert.assertEquals(statisticPage.onWay.getText(), "Общее время в пути", "onWay in months is not present");
-        Assert.assertEquals(statisticPage.style.getText(), "Стиль вождения", "style in months is not present");
-        Assert.assertEquals(statisticPage.maxSpeed.getText(), "Максимальная скорость", "maxSpeed in months is not present");
-        Assert.assertEquals(statisticPage.avgSpeed.getText(), "Средняя скорость", "avgSpeed in months is not present");
+        softAssert.assertTrue(statisticPage.jan.isDisplayed(), "months in months is not present");
+        softAssert.assertEquals(statisticPage.avgInDays.getText(), "Ср. загрузка в будни" , "avgInDays in months is not present");
+        softAssert.assertEquals(statisticPage.avgInHolidays.getText(), "Ср. загрузка в выходные", "avgInHolidays in months is not present");
+        softAssert.assertEquals(statisticPage.trips.getText(), "Количество поездок", "trips in months is not present");
+        softAssert.assertEquals(statisticPage.onWay.getText(), "Общее время в пути", "onWay in months is not present");
+        softAssert.assertEquals(statisticPage.style.getText(), "Стиль вождения", "style in months is not present");
+        softAssert.assertEquals(statisticPage.maxSpeed.getText(), "Максимальная скорость", "maxSpeed in months is not present");
+        softAssert.assertEquals(statisticPage.avgSpeed.getText(), "Средняя скорость", "avgSpeed in months is not present");
+
+        softAssert.assertAll();
 
     }
 

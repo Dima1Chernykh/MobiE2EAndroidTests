@@ -37,7 +37,7 @@ public class BaseMethods {
     }
 }
 
-// allure generate --clean --output /allure-results
+// allure generate --clean --output allure-results
 // allure serve -h localhost
 // to restart appium
 // adb uninstall io.appium.uiautomator2.server
